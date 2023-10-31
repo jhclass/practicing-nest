@@ -15,6 +15,10 @@ export class MovieController {
   getAll() {
     return 'This will return all movies';
   }
+  @Get('/search')
+  search() {
+    return `We are searching for a movie with a title`;
+  }
   @Get('/:id')
   getOne(@Param('id', ParseIntPipe) id: number) {
     return `this will return one movie id : ${id}`;
@@ -35,10 +39,5 @@ export class MovieController {
       updateMovie: id,
       ...updateData,
     };
-  }
-
-  @Get('/search')
-  search() {
-    return `We are searching for a movie with a title`;
   }
 }
