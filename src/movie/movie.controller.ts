@@ -6,6 +6,7 @@ import {
   Post,
   Delete,
   Patch,
+  Body,
 } from '@nestjs/common';
 
 @Controller('movie')
@@ -19,7 +20,8 @@ export class MovieController {
     return `this will return one movie id : ${id}`;
   }
   @Post()
-  create() {
+  create(@Body() movieData) {
+    console.log(movieData);
     return 'This will create a movie';
   }
   @Delete('/:id')
