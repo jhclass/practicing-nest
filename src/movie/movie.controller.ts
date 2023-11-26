@@ -9,32 +9,32 @@ import {
 } from "@nestjs/common";
 import { MovieService } from "./movie.service";
 import { Movie } from "./entities/movie.entity";
+import { CreateMovieDto } from "./dto/create-movie.dto";
+import { UpdateMovieDto } from "./dto/update-movie.dto";
 
 @Controller("movie")
 export class MovieController {
-  constructor(private readonly moviesService: MovieService) {}
+  constructor(private readonly movieService: MovieService) {}
   @Get()
-  getAll(): Movie[] {
-    return this.moviesService.getAll();
+  getAll() {
+    return this.movieService.getAll();
   }
 
   @Get("/:id")
-  getOne(@Param("id") movieId: string): Movie {
-    return this.moviesService.getOne(movieId);
+  getOne(@Param("id") movieId: number): Movie {
+    console.log(typeof movieId);
+    return this.movieService.getOne(movieId);
   }
   @Post()
-  create(@Body() movieData) {
-    return this.moviesService.create(movieData);
+  create(@Body() movieData: CreateMovieDto) {
+    return this.movieService.create(movieData);
   }
   @Delete("/:id")
-  remove(@Param("id") movieId: string) {
-    return this.moviesService.deleteOne(movieId);
+  remove(@Param("id") movieId: number) {
+    return this.movieService.deleteOne(movieId);
   }
   @Patch("/:id")
-  patch(@Param("id") id: string, @Body() updateData) {
-    return {
-      updateMovie: id,
-      ...updateData,
-    };
+  patch(@Param("id") movieId: number, @Body() updateData: UpdateMovieDto) {
+    return this.movieService.update(movieId, updateData);
   }
 }
