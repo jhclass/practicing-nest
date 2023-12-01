@@ -15,7 +15,17 @@ describe("MovieService", () => {
   it("should be defined", () => {
     expect(service).toBeDefined();
   });
-  it("should be 4", () => {
-    expect(2 + 2).toEqual(5);
+
+  describe("getAll", () => {
+    //첫번째 배열을 실행할꺼야.
+    it("should return an array", () => {
+      // const list = service.create({
+      //   title: "testMovie",
+      //   year: 2024,
+      //   genres: ["test"],
+      // });
+      const result = service.getAll();
+      expect(result).toBeInstanceOf(Array);
+    });
   });
 });
