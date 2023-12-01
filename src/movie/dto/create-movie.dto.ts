@@ -5,7 +5,7 @@ export class CreateMovieDto {
 
   @IsNumber()
   readonly year: number;
-  
+
   @IsOptional()
   @IsString({ each: true })
   readonly genres: string[];
