@@ -20,7 +20,6 @@ describe("MovieService", () => {
     //첫번째 배열을 실행할꺼야.
     it("should return an array", () => {
       // const list = service.create({
-
       // });
       const result = service.getAll();
       expect(result).toBeInstanceOf(Array);
@@ -67,6 +66,19 @@ describe("MovieService", () => {
       } catch (error) {
         expect(error).toBeInstanceOf(NotFoundException);
       }
+    });
+  });
+  describe("create", () => {
+    it("should creatre a movie", () => {
+      const beforeCreate = service.getAll().length;
+      service.create({
+        title: "testMovie",
+        year: 2024,
+        genres: ["test"],
+      });
+      const afterCreate = service.getAll().length;
+      console.log(beforeCreate, afterCreate);
+      expect(afterCreate).toBeGreaterThan(beforeCreate);
     });
   });
 });
