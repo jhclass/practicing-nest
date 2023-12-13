@@ -1,10 +1,11 @@
-//import { Query } from "@nestjs/common";
-import {Query, Resolver } from "@nestjs/graphql";
+import { Query, Resolver, Args } from "@nestjs/graphql";
 
+import { TUserService } from "./t-user.service";
 @Resolver()
 export class TUserResolver {
-  @Query(() => String)
-  async hello() {
-    return "Hello World!";
+  constructor(private userService: TUserService) {}
+  @Query()
+  async allUsers() {
+    return this.userService.findAll();
   }
 }

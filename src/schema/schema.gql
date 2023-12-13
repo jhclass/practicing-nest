@@ -1,0 +1,13 @@
+type TUser {
+  id: Int
+  name: String
+  email: String
+}
+type FindAllResponse {
+  ok: Boolean!
+  data: [TUser]
+}
+
+type Query {
+  allUsers: FindAllResponse
+}
