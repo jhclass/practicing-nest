@@ -11,3 +11,20 @@ type FindAllResponse {
 type Query {
   allUsers: FindAllResponse
 }
+
+type CreateCommentResponse {
+  ok: Boolean!
+  error: String
+  message: String
+}
+
+type Mutation {
+  createComment(name: String, content: String): CreateCommentResponse
+}
+type Comment {
+  id: Int!
+  name: String!
+  content: String!
+  createdAt: String
+  updatedAt: String
+}

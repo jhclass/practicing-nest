@@ -7,6 +7,8 @@ import { GraphQLModule } from "@nestjs/graphql";
 import { ApolloDriver, ApolloDriverConfig } from "@nestjs/apollo";
 import { TUserService } from "./t-user/t-user.service";
 import { PrismaService } from "./prisma/prisma.service";
+import { CommentResolver } from "./comment/comment.resolver";
+import { CommentService } from "./comment/comment.service";
 
 @Module({
   imports: [
@@ -18,6 +20,12 @@ import { PrismaService } from "./prisma/prisma.service";
     }),
   ],
   controllers: [AppController],
-  providers: [TUserResolver, TUserService, PrismaService],
+  providers: [
+    TUserResolver,
+    TUserService,
+    PrismaService,
+    CommentResolver,
+    CommentService,
+  ],
 })
 export class AppModule {}
