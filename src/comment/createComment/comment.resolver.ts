@@ -1,5 +1,5 @@
 import { Mutation, Resolver, Args } from "@nestjs/graphql";
-import { CommentService } from "./comment.service";
+import { CommentService } from "@/comment/createComment/comment.service";
 
 @Resolver()
 export class CommentResolver {

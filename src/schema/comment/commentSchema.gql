@@ -1,0 +1,17 @@
+type CommentResponse {
+  ok: Boolean!
+  error: String
+  message: String
+}
+
+type Mutation {
+  createComment(name: String, content: String): CommentResponse
+  deleteComment(id:Int!):CommentResponse 
+}
+type Comment {
+  id: Int!
+  name: String!
+  content: String!
+  createdAt: String
+  updatedAt: String
+}
