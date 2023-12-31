@@ -1,6 +1,6 @@
 type TUser {
   id: Int
-  tpassword:String
+  tpassword: String
   name: String
   email: String
 }
@@ -9,17 +9,13 @@ type FindAllResponse {
   data: [TUser]
 }
 type loginResult {
-  ok:Boolean
-  error:String
-  token:String
+  ok: Boolean
+  error: String
+  token: String
 }
 type Mutation {
-    createUser(
-    name:String
-    password:String
-    email:String
-    ):CommentResponse
-    login(name:String password:String):loginResult
+  createUser(name: String, password: String, email: String): CommentResponse
+  login(name: String, password: String): loginResult
 }
 type Query {
   allUsers: FindAllResponse

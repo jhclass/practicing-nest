@@ -18,7 +18,6 @@ export class LoginService {
         message: `아이디가 존재하지 않습니다.`,
       };
     }
-    console.log(extingUser,"extingUser 은 뭘까?")
     //비밀번호 검증로직 추가
     //bycrypt compare
     const passwordOk = await bcrypt.compare(password, extingUser.password);

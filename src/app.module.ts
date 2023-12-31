@@ -16,7 +16,7 @@ import { JwtModule } from "@nestjs/jwt";
   imports: [
     JwtModule.register({
       secret: process.env.SECRET_KEY,
-      signOptions:{expiresIn:"14d"}
+      signOptions: { expiresIn: "14d" },
     }),
     MovieModule,
     CoreModule,
