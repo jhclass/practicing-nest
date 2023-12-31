@@ -9,6 +9,7 @@ import { CreateUserResolver } from "@/t-user/create-user/create-user.resolver";
 import { CommentModule } from "@/comment/comment.module";
 import { CoreModule } from "@/core.module";
 import { CreateUserService } from "@/t-user/create-user/create-user.service";
+import { AuthModule } from "@/auth/auth.module";
 @Module({
   imports: [
     MovieModule,
@@ -20,6 +21,7 @@ import { CreateUserService } from "@/t-user/create-user/create-user.service";
       //introspection: true,
     }),
     CommentModule,
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [
