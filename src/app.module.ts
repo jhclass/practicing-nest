@@ -8,6 +8,7 @@ import { TUserService } from "@/t-user/t-user.service";
 import { CreateUserResolver } from "@/t-user/create-user/create-user.resolver";
 import { CommentModule } from "@/comment/comment.module";
 import { CoreModule } from "@/core.module";
+import { CreateUserService } from "@/t-user/create-user/create-user.service";
 @Module({
   imports: [
     MovieModule,
@@ -21,6 +22,11 @@ import { CoreModule } from "@/core.module";
     CommentModule,
   ],
   controllers: [AppController],
-  providers: [TUserResolver, TUserService, CreateUserResolver],
+  providers: [
+    TUserResolver,
+    TUserService,
+    CreateUserResolver,
+    CreateUserService,
+  ],
 })
 export class AppModule {}

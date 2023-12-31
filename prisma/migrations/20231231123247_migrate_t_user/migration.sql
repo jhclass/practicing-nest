@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE "TUser" ALTER COLUMN "password" SET DATA TYPE TEXT;
