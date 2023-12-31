@@ -9,9 +9,15 @@ import { CreateUserResolver } from "@/t-user/create-user/create-user.resolver";
 import { CommentModule } from "@/comment/comment.module";
 import { CoreModule } from "@/core.module";
 import { CreateUserService } from "@/t-user/create-user/create-user.service";
-import { AuthModule } from "@/auth/auth.module";
+import { LoginResolver } from "@/t-user/login/login.resolver";
+import { LoginService } from "@/t-user/login/login.service";
+import { JwtModule } from "@nestjs/jwt";
 @Module({
   imports: [
+    JwtModule.register({
+      secret: process.env.SECRET_KEY,
+      signOptions:{expiresIn:"14d"}
+    }),
     MovieModule,
     CoreModule,
     GraphQLModule.forRoot<ApolloDriverConfig>({
@@ -21,7 +27,6 @@ import { AuthModule } from "@/auth/auth.module";
       //introspection: true,
     }),
     CommentModule,
-    AuthModule,
   ],
   controllers: [AppController],
   providers: [
@@ -29,6 +34,8 @@ import { AuthModule } from "@/auth/auth.module";
     TUserService,
     CreateUserResolver,
     CreateUserService,
+    LoginResolver,
+    LoginService,
   ],
 })
 export class AppModule {}
