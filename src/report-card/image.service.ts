@@ -18,7 +18,7 @@ export class ImageService {
   async getSignedUploadUrl(fileName: string): Promise<string> {
     const command = new PutObjectCommand({
       Bucket: "instaclone-uploadsss",
-      Key: `reportImages/${fileName}`,
+      Key: `report_images/${fileName}`,
     });
     const signedUrl = await getSignedUrl(this.s3Client, command, {
       expiresIn: 60,
