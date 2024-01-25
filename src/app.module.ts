@@ -12,6 +12,8 @@ import { CreateUserService } from "@/t-user/create-user/create-user.service";
 import { LoginResolver } from "@/t-user/login/login.resolver";
 import { LoginService } from "@/t-user/login/login.service";
 import { JwtModule } from "@nestjs/jwt";
+import { S3Module } from "nestjs-s3";
+import { ConfigModule, ConfigService } from "@nestjs/config";
 @Module({
   imports: [
     JwtModule.register({
@@ -27,6 +29,19 @@ import { JwtModule } from "@nestjs/jwt";
       //introspection: true,
     }),
     CommentModule,
+    S3Module.forRootAsync({
+      imports: [ConfigModule],
+      useFactory: async (ConfigService: ConfigService) => ({
+        config: {
+          credentials: {
+            accessKeyId: ConfigService.get(process.env.AWS_KEY),
+            secretAccessKey: ConfigService.get(process.env.AWS_SECRET),
+          },
+          region: ConfigService.get(process.env.AWS_REGION),
+        },
+      }),
+      inject: [ConfigService],
+    }),
   ],
   controllers: [AppController],
   providers: [

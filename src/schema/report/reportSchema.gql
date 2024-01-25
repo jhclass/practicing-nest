@@ -1,0 +1,15 @@
+type ReportCard {
+  id: ID!
+  score: Int!
+  comment: String
+  imageUrl: String
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type Mutation {
+  getSignedUploadUrl(fileName: String!): String!
+  createReportCard(score: Int!, comment: String, imageUrl: String): ReportCard
+}
+
+scalar DateTime
