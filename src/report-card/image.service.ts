@@ -29,17 +29,16 @@ export class ImageService {
   // 서명된 url 을 가지고
   // s3 에 업로드 합니다.
   // 그런데 fileBuffer 를 받아야 하는데
-  async uploadFileToS3(file: Express.Multer.File): Promise<string>{
+  async uploadFileToS3(file: Express.Multer.File): Promise<string> {
     const bucketName = "instaclone-uploadsss";
-    const key = `report_images/${file.originalname}`
+    const key = `report_images/${file.originalname}`;
     const command = new PutObjectCommand({
       Bucket: bucketName,
       Key: key,
-      Body:file.buffer,
+      Body: file.buffer,
     });
-   await this.s3Client.send(command);
+    await this.s3Client.send(command);
     const uploadedFileUrl = `https://${bucketName}.s3.${process.env.AWS_REGION}.amazonaws.com/${key}`;
     return uploadedFileUrl;
-  
   }
 }

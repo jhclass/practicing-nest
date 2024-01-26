@@ -1,8 +1,4 @@
-import {
-  Controller,
-  Get,
-
-} from "@nestjs/common";
+import { Controller, Get } from "@nestjs/common";
 
 import { ImageService } from "@/report-card/image.service";
 @Controller()
