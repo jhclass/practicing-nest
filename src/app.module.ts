@@ -14,6 +14,9 @@ import { LoginService } from "@/t-user/login/login.service";
 import { JwtModule } from "@nestjs/jwt";
 import { S3Module } from "nestjs-s3";
 import { ConfigModule, ConfigService } from "@nestjs/config";
+import { ImageService } from "./report-card/image.service";
+import { ReportCardResolver } from "./report-card/report-card.resolver";
+import { ReportCardService } from "./report-card/report-card.service";
 @Module({
   imports: [
     JwtModule.register({
@@ -51,6 +54,9 @@ import { ConfigModule, ConfigService } from "@nestjs/config";
     CreateUserService,
     LoginResolver,
     LoginService,
+    ImageService,
+    ReportCardResolver,
+    ReportCardService,
   ],
 })
 export class AppModule {}
