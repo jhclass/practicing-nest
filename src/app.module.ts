@@ -17,6 +17,7 @@ import { ConfigModule, ConfigService } from "@nestjs/config";
 import { ImageService } from "./report-card/image.service";
 import { ReportCardResolver } from "./report-card/report-card.resolver";
 import { ReportCardService } from "./report-card/report-card.service";
+
 @Module({
   imports: [
     JwtModule.register({
