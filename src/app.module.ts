@@ -14,9 +14,10 @@ import { LoginService } from "@/t-user/login/login.service";
 import { JwtModule } from "@nestjs/jwt";
 import { S3Module } from "nestjs-s3";
 import { ConfigModule, ConfigService } from "@nestjs/config";
-import { ImageService } from "./report-card/image.service";
-import { ReportCardResolver } from "./report-card/report-card.resolver";
-import { ReportCardService } from "./report-card/report-card.service";
+import { ImageService } from "@/report-card/image.service";
+import { ReportCardResolver } from "@/report-card/report-card.resolver";
+import { ReportCardService } from "@/report-card/report-card.service";
+import { ImageModule } from "@/report-card/image.module";
 
 @Module({
   imports: [
@@ -46,6 +47,7 @@ import { ReportCardService } from "./report-card/report-card.service";
       }),
       inject: [ConfigService],
     }),
+    ImageModule,
   ],
   controllers: [AppController],
   providers: [
