@@ -8,14 +8,14 @@ type FindAllResponse {
   ok: Boolean!
   data: [TUser]
 }
-type loginResult {
+type LoginResult {
   ok: Boolean
   error: String
   token: String
 }
 type Mutation {
   createUser(name: String, password: String, email: String): CommentResponse
-  login(name: String, password: String): loginResult
+  login(name: String, password: String): LoginResult
 }
 type Query {
   allUsers: FindAllResponse

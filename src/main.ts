@@ -13,6 +13,6 @@ async function bootstrap() {
       transform: true, //기본적으로 string 을 가져오지만 이 속성을 쓰면 변환해줌
     }),
   );
-  await app.listen(3000);
+  await app.listen(4000);
 }
 bootstrap();

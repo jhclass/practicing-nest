@@ -18,6 +18,7 @@ import { ImageService } from "@/report-card/image.service";
 import { ReportCardResolver } from "@/report-card/report-card.resolver";
 import { ReportCardService } from "@/report-card/report-card.service";
 import { ImageModule } from "@/report-card/image.module";
+import { join } from "path";
 
 @Module({
   imports: [
@@ -32,6 +33,10 @@ import { ImageModule } from "@/report-card/image.module";
       driver: ApolloDriver,
       playground: true,
       //introspection: true,
+      definitions: {
+        path: join(process.cwd(), "src/schema/graphql.ts"),
+        outputAs: "class",
+      },
     }),
     CommentModule,
     S3Module.forRootAsync({
