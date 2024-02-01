@@ -19,6 +19,7 @@ import { ReportCardResolver } from "@/report-card/report-card.resolver";
 import { ReportCardService } from "@/report-card/report-card.service";
 import { ImageModule } from "@/report-card/image.module";
 import { join } from "path";
+import { ChatGateway } from "./chat/chat.gateway";
 
 @Module({
   imports: [
@@ -65,6 +66,7 @@ import { join } from "path";
     ImageService,
     ReportCardResolver,
     ReportCardService,
+    ChatGateway,
   ],
 })
 export class AppModule {}
