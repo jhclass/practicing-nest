@@ -15,9 +15,11 @@ export class CommentResponse {
 }
 
 export abstract class IMutation {
-    abstract createComment(name?: Nullable<string>, content?: Nullable<string>): Nullable<CommentResponse> | Promise<Nullable<CommentResponse>>;
+    abstract createComment(name: string, password: string, content: string): Nullable<CommentResponse> | Promise<Nullable<CommentResponse>>;
 
     abstract deleteComment(id: number): Nullable<CommentResponse> | Promise<Nullable<CommentResponse>>;
+
+    abstract updateComment(id: number, name?: Nullable<string>, password?: Nullable<string>, content?: Nullable<string>): Nullable<CommentResponse> | Promise<Nullable<CommentResponse>>;
 
     abstract getSignedUploadUrl(fileName: string): string | Promise<string>;
 
@@ -28,9 +30,24 @@ export abstract class IMutation {
     abstract login(name?: Nullable<string>, password?: Nullable<string>): Nullable<LoginResult> | Promise<Nullable<LoginResult>>;
 }
 
+export class CommentDataResult {
+    ok: boolean;
+    message?: Nullable<string>;
+    error?: Nullable<string>;
+    data?: Nullable<Nullable<Comment>[]>;
+    totalCount?: Nullable<number>;
+}
+
+export abstract class IQuery {
+    abstract seeComment(page?: Nullable<number>, limit?: Nullable<number>): Nullable<CommentDataResult> | Promise<Nullable<CommentDataResult>>;
+
+    abstract allUsers(): Nullable<FindAllResponse> | Promise<Nullable<FindAllResponse>>;
+}
+
 export class Comment {
     id: number;
     name: string;
+    password: string;
     content: string;
     createdAt?: Nullable<string>;
     updatedAt?: Nullable<string>;
@@ -61,10 +78,6 @@ export class LoginResult {
     ok?: Nullable<boolean>;
     error?: Nullable<string>;
     token?: Nullable<string>;
-}
-
-export abstract class IQuery {
-    abstract allUsers(): Nullable<FindAllResponse> | Promise<Nullable<FindAllResponse>>;
 }
 
 export type DateTime = any;

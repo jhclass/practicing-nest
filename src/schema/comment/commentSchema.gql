@@ -5,12 +5,33 @@ type CommentResponse {
 }
 
 type Mutation {
-  createComment(name: String, content: String): CommentResponse
-  deleteComment(id:Int!):CommentResponse 
+  createComment(
+    name: String!
+    password: String!
+    content: String!
+  ): CommentResponse
+  deleteComment(id: Int!): CommentResponse
+  updateComment(
+    id: Int!
+    name: String
+    password: String
+    content: String
+  ): CommentResponse
+}
+type CommentDataResult {
+  ok: Boolean!
+  message: String
+  error: String
+  data: [Comment]
+  totalCount: Int
+}
+type Query {
+  seeComment(page: Int, limit: Int): CommentDataResult
 }
 type Comment {
   id: Int!
   name: String!
+  password: String!
   content: String!
   createdAt: String
   updatedAt: String
