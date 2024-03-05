@@ -1,6 +1,6 @@
 import { Module } from "@nestjs/common";
 import { MovieModule } from "@/movie/movie.module";
-import { AppController } from "@/app.controller";
+import { AppController, apiController } from "@/app.controller";
 import { TUserResolver } from "@/t-user/t-user.resolver";
 import { GraphQLModule } from "@nestjs/graphql";
 import { ApolloDriver, ApolloDriverConfig } from "@nestjs/apollo";
@@ -20,9 +20,13 @@ import { ReportCardService } from "@/report-card/report-card.service";
 import { ImageModule } from "@/report-card/image.module";
 import { join } from "path";
 import { ChatGateway } from "./chat/chat.gateway";
+import { JwtStrategy } from "@/jwt.strategy";
 
 @Module({
   imports: [
+    ConfigModule.forRoot({
+      isGlobal: true,
+    }),
     JwtModule.register({
       secret: process.env.SECRET_KEY,
       signOptions: { expiresIn: "14d" },
@@ -55,8 +59,9 @@ import { ChatGateway } from "./chat/chat.gateway";
     }),
     ImageModule,
   ],
-  controllers: [AppController],
+  controllers: [AppController, apiController],
   providers: [
+    JwtStrategy,
     TUserResolver,
     TUserService,
     CreateUserResolver,
