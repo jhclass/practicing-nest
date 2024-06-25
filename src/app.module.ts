@@ -21,7 +21,6 @@ import { ImageModule } from "@/report-card/image.module";
 import { join } from "path";
 import { ChatGateway } from "./chat/chat.gateway";
 import { JwtStrategy } from "@/jwt.strategy";
-import { AuthModule } from "@/auth/auth.module";
 
 @Module({
   imports: [
@@ -60,7 +59,6 @@ import { AuthModule } from "@/auth/auth.module";
       inject: [ConfigService],
     }),
     ImageModule,
-    AuthModule,
   ],
   controllers: [AppController, apiController],
   providers: [

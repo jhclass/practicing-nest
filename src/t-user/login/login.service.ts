@@ -9,10 +9,10 @@ export class LoginService {
     private jwtService: JwtService,
   ) {}
   async validateUser(name: string, password: string) {
-    const extingUser = await this.prisma.tUser.findFirst({
+    const existingUser = await this.prisma.tUser.findFirst({
       where: { name },
     });
-    if (!extingUser) {
+    if (!existingUser) {
       return {
         ok: false,
         message: `아이디가 존재하지 않습니다.`,
@@ -20,7 +20,7 @@ export class LoginService {
     }
     //비밀번호 검증로직 추가
     //bycrypt compare
-    const passwordOk = await bcrypt.compare(password, extingUser.password);
+    const passwordOk = await bcrypt.compare(password, existingUser.password);
     if (!passwordOk) {
       return {
         ok: false,
@@ -29,8 +29,8 @@ export class LoginService {
     }
     // jwt 토큰생성
     const payload = {
-      name: extingUser.name,
-      email: extingUser.id,
+      email: existingUser.email,
+      phoneNum: existingUser.phoneNum,
     };
 
     const token = this.jwtService.sign(payload);
