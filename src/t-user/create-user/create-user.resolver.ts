@@ -8,7 +8,13 @@ export class CreateUserResolver {
     @Args("name") name: string,
     @Args("password") password: string,
     @Args("email") email: string,
+    @Args("phoneNum") phoneNum: string,
   ) {
-    return this.createUserService.createUserService(name, password, email);
+    return this.createUserService.createUserService(
+      name,
+      password,
+      email,
+      phoneNum,
+    );
   }
 }

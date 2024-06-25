@@ -14,7 +14,12 @@ type LoginResult {
   token: String
 }
 type Mutation {
-  createUser(name: String, password: String, email: String): CommentResponse
+  createUser(
+    name: String
+    password: String
+    email: String
+    phoneNum: String
+  ): CommentResponse
   login(name: String, password: String): LoginResult
 }
 type Query {

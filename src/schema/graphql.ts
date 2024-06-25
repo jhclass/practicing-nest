@@ -25,7 +25,7 @@ export abstract class IMutation {
 
     abstract createReportCard(score: number, comment?: Nullable<string>, imageUrl?: Nullable<string>): Nullable<ReportCard> | Promise<Nullable<ReportCard>>;
 
-    abstract createUser(name?: Nullable<string>, password?: Nullable<string>, email?: Nullable<string>): Nullable<CommentResponse> | Promise<Nullable<CommentResponse>>;
+    abstract createUser(name?: Nullable<string>, password?: Nullable<string>, email?: Nullable<string>, phoneNum?: Nullable<string>): Nullable<CommentResponse> | Promise<Nullable<CommentResponse>>;
 
     abstract login(name?: Nullable<string>, password?: Nullable<string>): Nullable<LoginResult> | Promise<Nullable<LoginResult>>;
 }

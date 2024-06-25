@@ -4,7 +4,12 @@ import * as bcrypt from "bcrypt";
 @Injectable()
 export class CreateUserService {
   constructor(private prisma: PrismaService) {}
-  async createUserService(name: string, password: string, email: string) {
+  async createUserService(
+    name: string,
+    password: string,
+    email: string,
+    phoneNum: string,
+  ) {
     try {
       const salt = await bcrypt.genSalt();
       const hashedPassword = await bcrypt.hash(password, salt);
@@ -13,6 +18,7 @@ export class CreateUserService {
           name,
           password: hashedPassword,
           email,
+          phoneNum,
         },
       });
       if (createUserOk) {

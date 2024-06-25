@@ -15,6 +15,7 @@ model TUser {
   name     String
   password String
   email    String @unique
+  phoneNum String @unique
 }
 
 model Comment {

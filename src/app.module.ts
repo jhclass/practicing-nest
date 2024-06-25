@@ -21,6 +21,7 @@ import { ImageModule } from "@/report-card/image.module";
 import { join } from "path";
 import { ChatGateway } from "./chat/chat.gateway";
 import { JwtStrategy } from "@/jwt.strategy";
+import { AuthModule } from "@/auth/auth.module";
 
 @Module({
   imports: [
@@ -38,6 +39,7 @@ import { JwtStrategy } from "@/jwt.strategy";
       driver: ApolloDriver,
       playground: true,
       //introspection: true,
+      context: ({ req }) => ({ headers: req.headers }),
       definitions: {
         path: join(process.cwd(), "src/schema/graphql.ts"),
         outputAs: "class",
@@ -58,6 +60,7 @@ import { JwtStrategy } from "@/jwt.strategy";
       inject: [ConfigService],
     }),
     ImageModule,
+    AuthModule,
   ],
   controllers: [AppController, apiController],
   providers: [
