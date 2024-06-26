@@ -25,6 +25,8 @@ export abstract class IMutation {
 
     abstract createReportCard(score: number, comment?: Nullable<string>, imageUrl?: Nullable<string>): Nullable<ReportCard> | Promise<Nullable<ReportCard>>;
 
+    abstract createSurvey(category: string, writter: string): CommonResponse | Promise<CommonResponse>;
+
     abstract createUser(name: string, password: string, email: string, phoneNum: string): Nullable<CommentResponse> | Promise<Nullable<CommentResponse>>;
 
     abstract login(name?: Nullable<string>, password?: Nullable<string>): Nullable<LoginResult> | Promise<Nullable<LoginResult>>;
@@ -53,6 +55,12 @@ export class Comment {
     updatedAt?: Nullable<string>;
 }
 
+export class CommonResponse {
+    ok: boolean;
+    message?: Nullable<string>;
+    error?: Nullable<string>;
+}
+
 export class ReportCard {
     id: string;
     score: number;
@@ -60,6 +68,25 @@ export class ReportCard {
     imageUrl?: Nullable<string>;
     createdAt: DateTime;
     updatedAt: DateTime;
+}
+
+export class Survey {
+    id: number;
+    category: string;
+    writter: string;
+    createdAt?: Nullable<DateTime>;
+    updatedAt?: Nullable<DateTime>;
+    admissionQuestion?: Nullable<Nullable<AdmissionQuestion>[]>;
+}
+
+export class AdmissionQuestion {
+    id: number;
+    question: string;
+    answer: string;
+    survey?: Nullable<Survey>;
+    surveyId: number;
+    createdAt?: Nullable<DateTime>;
+    updatedAt?: Nullable<DateTime>;
 }
 
 export class TUser {

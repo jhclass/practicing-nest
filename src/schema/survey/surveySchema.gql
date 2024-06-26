@@ -1,0 +1,22 @@
+type Survey {
+  id: Int!
+  category: String!
+  writter: String!
+  createdAt: DateTime
+  updatedAt: DateTime
+  admissionQuestion: [AdmissionQuestion]
+}
+
+type AdmissionQuestion {
+  id: Int!
+  question: String!
+  answer: String!
+  survey: Survey
+  surveyId: Int!
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+type Mutation {
+  createSurvey(category: String!, writter: String!): CommonResponse!
+}

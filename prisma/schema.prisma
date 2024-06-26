@@ -35,3 +35,22 @@ model ReportCard {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
+
+model Survey {
+  id                Int                 @id @default(autoincrement())
+  category          String
+  writter           String
+  createdAt         DateTime            @default(now())
+  updatedAt         DateTime            @updatedAt
+  admissionQuestion AdmissionQuestion[]
+}
+
+model AdmissionQuestion {
+  id        Int      @id @default(autoincrement())
+  question  String
+  answer    String
+  survey    Survey   @relation(fields: [surveyId], references: [id], onDelete: Cascade)
+  surveyId  Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}

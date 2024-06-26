@@ -21,6 +21,7 @@ import { ImageModule } from "@/report-card/image.module";
 import { join } from "path";
 import { ChatGateway } from "./chat/chat.gateway";
 import { JwtStrategy } from "@/jwt.strategy";
+import { CreateSurveyModule } from "@/survey/create-survey/create-survey.module";
 
 @Module({
   imports: [
@@ -40,6 +41,7 @@ import { JwtStrategy } from "@/jwt.strategy";
       //introspection: true,
       context: ({ req }) => ({ headers: req.headers }),
       definitions: {
+        //typecript class 자동생성
         path: join(process.cwd(), "src/schema/graphql.ts"),
         outputAs: "class",
       },
@@ -59,6 +61,7 @@ import { JwtStrategy } from "@/jwt.strategy";
       inject: [ConfigService],
     }),
     ImageModule,
+    CreateSurveyModule,
   ],
   controllers: [AppController, apiController],
   providers: [
