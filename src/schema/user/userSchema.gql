@@ -15,10 +15,10 @@ type LoginResult {
 }
 type Mutation {
   createUser(
-    name: String
-    password: String
-    email: String
-    phoneNum: String
+    name: String!
+    password: String!
+    email: String!
+    phoneNum: String!
   ): CommentResponse
   login(name: String, password: String): LoginResult
 }
