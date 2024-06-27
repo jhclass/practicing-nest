@@ -1,10 +1,9 @@
-import { Controller, Get, UseGuards } from "@nestjs/common";
+import { Controller, Get } from "@nestjs/common";
 import { ImageService } from "@/report-card/image.service";
-import { AuthGuard } from "@nestjs/passport";
+
 @Controller("")
 export class AppController {
   constructor(private readonly imageService: ImageService) {}
-  @UseGuards(AuthGuard("jwt"))
   @Get()
   home() {
     return "Welcome";
