@@ -22,6 +22,9 @@ import { join } from "path";
 import { ChatGateway } from "./chat/chat.gateway";
 import { JwtStrategy } from "@/jwt.strategy";
 import { CreateSurveyModule } from "@/survey/create-survey/create-survey.module";
+import { EditSurveyModule } from './survey/edit-survey/edit-survey.module';
+import { CreateAqModule } from './survey/create-aq/create-aq.module';
+import { CreateAqResolver } from './servey/create-aq/create-aq.resolver';
 
 @Module({
   imports: [
@@ -62,6 +65,8 @@ import { CreateSurveyModule } from "@/survey/create-survey/create-survey.module"
     }),
     ImageModule,
     CreateSurveyModule,
+    EditSurveyModule,
+    CreateAqModule,
   ],
   controllers: [AppController, apiController],
   providers: [
@@ -76,6 +81,7 @@ import { CreateSurveyModule } from "@/survey/create-survey/create-survey.module"
     ReportCardResolver,
     ReportCardService,
     ChatGateway,
+    CreateAqResolver,
   ],
 })
 export class AppModule {}

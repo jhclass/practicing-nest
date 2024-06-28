@@ -19,4 +19,7 @@ type AdmissionQuestion {
 
 type Mutation {
   createSurvey(category: String!, writter: String!): CommonResponse!
+  editSurvey(id:Int!, category:String!, writter:String!): CommonResponse!
+  createAQ(surveyId:Int!,  question: String!
+  answer: String!):CommonResponse!
 }
