@@ -11,6 +11,9 @@ export class CreateAqService {
     answer: string,
   ): Promise<CommonResponse> {
     try {
+      console.log(
+        `Received surveyId: ${surveyId}, question: ${question}, answer: ${answer}`,
+      );
       if (!surveyId || !question || !answer) {
         throw new Error("모든 필드를 입력해야 합니다.");
       }
@@ -20,7 +23,7 @@ export class CreateAqService {
       if (!checkSurveyId) {
         throw new Error("해당설문은 없습니다. 설문(survey)를 먼저 생성하세요.");
       }
-      const createAqData = this.client.admissionQuestion.create({
+      const createAqData = await this.client.admissionQuestion.create({
         data: {
           surveyId,
           question,
@@ -30,6 +33,7 @@ export class CreateAqService {
       if (!createAqData) {
         throw new Error("정상적으로 데이터가 생성되지 않았습니다.");
       }
+      console.log(createAqData);
       return {
         ok: true,
         message: "정상적으로 데이터가 생성 되었습니다.",
