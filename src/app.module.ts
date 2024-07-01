@@ -24,6 +24,7 @@ import { JwtStrategy } from "@/jwt.strategy";
 import { CreateSurveyModule } from "@/survey/create-survey/create-survey.module";
 import { EditSurveyModule } from "@/survey/edit-survey/edit-survey.module";
 import { CreateAqModule } from "@/survey/create-aq/create-aq.module";
+import { EditAqModule } from './survey/edit-aq/edit-aq.module';
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -65,6 +66,7 @@ import { CreateAqModule } from "@/survey/create-aq/create-aq.module";
     CreateSurveyModule,
     EditSurveyModule,
     CreateAqModule,
+    EditAqModule,
   ],
   controllers: [AppController, apiController],
   providers: [

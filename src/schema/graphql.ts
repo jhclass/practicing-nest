@@ -31,6 +31,8 @@ export abstract class IMutation {
 
     abstract createAQ(surveyId: number, question: string, answer: string): CommonResponse | Promise<CommonResponse>;
 
+    abstract editAQ(id: number, question?: Nullable<string>, answer: string): CommonResponse | Promise<CommonResponse>;
+
     abstract createUser(name: string, password: string, email: string, phoneNum: string): Nullable<CommentResponse> | Promise<Nullable<CommentResponse>>;
 
     abstract login(name?: Nullable<string>, password?: Nullable<string>): Nullable<LoginResult> | Promise<Nullable<LoginResult>>;
