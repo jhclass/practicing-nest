@@ -11,11 +11,12 @@ datasource db {
 }
 
 model TUser {
-  id       Int    @id @default(autoincrement())
+  id       Int     @id @default(autoincrement())
   name     String
   password String
-  email    String @unique
-  phoneNum String @unique
+  email    String  @unique
+  phoneNum String  @unique
+  grade    String?
 }
 
 model Comment {

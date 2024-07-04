@@ -11,7 +11,7 @@ import { CoreModule } from "@/core.module";
 import { CreateUserService } from "@/t-user/create-user/create-user.service";
 import { LoginResolver } from "@/t-user/login/login.resolver";
 import { LoginService } from "@/t-user/login/login.service";
-import { JwtModule } from "@nestjs/jwt";
+import { JwtModule, JwtService } from "@nestjs/jwt";
 import { S3Module } from "nestjs-s3";
 import { ConfigModule, ConfigService } from "@nestjs/config";
 import { ImageService } from "@/report-card/image.service";
@@ -24,7 +24,10 @@ import { JwtStrategy } from "@/jwt.strategy";
 import { CreateSurveyModule } from "@/survey/create-survey/create-survey.module";
 import { EditSurveyModule } from "@/survey/edit-survey/edit-survey.module";
 import { CreateAqModule } from "@/survey/create-aq/create-aq.module";
-import { EditAqModule } from './survey/edit-aq/edit-aq.module';
+import { EditAqModule } from "./survey/edit-aq/edit-aq.module";
+import { DeleteAqModule } from "./survey/delete-aq/delete-aq.module";
+import { PrismaService } from "./prisma/prisma.service";
+
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -41,7 +44,30 @@ import { EditAqModule } from './survey/edit-aq/edit-aq.module';
       driver: ApolloDriver,
       playground: true,
       //introspection: true,
-      context: ({ req }) => ({ headers: req.headers }),
+      context: async ({ req }) => {
+        const jwtService = new JwtService({
+          secret: process.env.SECRET_KEY,
+        });
+
+        let user = null;
+        const token = req.headers.token;
+
+        if (token) {
+          try {
+            const decodedToken = await jwtService.verifyAsync(token);
+            const prisma = new PrismaService();
+            user = await prisma.tUser.findUnique({
+              where: {
+                email: decodedToken.email,
+              },
+            });
+          } catch (e) {
+            console.error("Token verification error:", e.message);
+          }
+        }
+
+        return { req, user };
+      },
       definitions: {
         //typecript class 자동생성
         path: join(process.cwd(), "src/schema/graphql.ts"),
@@ -67,6 +93,7 @@ import { EditAqModule } from './survey/edit-aq/edit-aq.module';
     EditSurveyModule,
     CreateAqModule,
     EditAqModule,
+    DeleteAqModule,
   ],
   controllers: [AppController, apiController],
   providers: [
