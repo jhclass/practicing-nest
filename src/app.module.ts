@@ -24,9 +24,9 @@ import { JwtStrategy } from "@/jwt.strategy";
 import { CreateSurveyModule } from "@/survey/create-survey/create-survey.module";
 import { EditSurveyModule } from "@/survey/edit-survey/edit-survey.module";
 import { CreateAqModule } from "@/survey/create-aq/create-aq.module";
-import { EditAqModule } from "./survey/edit-aq/edit-aq.module";
-import { DeleteAqModule } from "./survey/delete-aq/delete-aq.module";
-import { PrismaService } from "./prisma/prisma.service";
+import { EditAqModule } from "@/survey/edit-aq/edit-aq.module";
+import { DeleteAqModule } from "@/survey/delete-aq/delete-aq.module";
+import { PrismaService } from "@/prisma/prisma.service";
 
 @Module({
   imports: [
