@@ -5,9 +5,7 @@ import { EditSurveyService } from "@/survey/edit-survey/edit-survey.service";
 import { CoreModule } from "@/core.module";
 
 @Module({
-  imports:[
-CoreModule
-  ],
+  imports: [CoreModule],
   providers: [EditSurveyResolver, EditSurveyService],
 })
 export class EditSurveyModule {}

@@ -1,0 +1,13 @@
+type Exam {
+  id: Int
+  createdAt: String
+  updatedAt: String
+  title: String
+  tester: TUser
+  tUserId: Int
+  Question: [ExamQuestion]
+}
+
+type Mutation {
+  createExam(title: String!, tUserId: Int!): CommentResponse!
+}

@@ -21,12 +21,9 @@ import { ImageModule } from "@/report-card/image.module";
 import { join } from "path";
 import { ChatGateway } from "./chat/chat.gateway";
 import { JwtStrategy } from "@/jwt.strategy";
-import { CreateSurveyModule } from "@/survey/create-survey/create-survey.module";
-import { EditSurveyModule } from "@/survey/edit-survey/edit-survey.module";
-import { CreateAqModule } from "@/survey/create-aq/create-aq.module";
-import { EditAqModule } from "@/survey/edit-aq/edit-aq.module";
-import { CreateExamService } from "@/exam/create-exam/create-exam.service";
-import { CreateExamResolver } from "@/exam/create-exam/create-exam.resolver";
+import { CreateExamModule } from "./exam/create-exam/create-exam.module";
+import { SurveyModule } from "./survey/survey.module";
+
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -65,10 +62,8 @@ import { CreateExamResolver } from "@/exam/create-exam/create-exam.resolver";
       inject: [ConfigService],
     }),
     ImageModule,
-    CreateSurveyModule,
-    EditSurveyModule,
-    CreateAqModule,
-    EditAqModule,
+    SurveyModule,
+    CreateExamModule,
   ],
   controllers: [AppController, apiController],
   providers: [
@@ -83,8 +78,6 @@ import { CreateExamResolver } from "@/exam/create-exam/create-exam.resolver";
     ReportCardResolver,
     ReportCardService,
     ChatGateway,
-    CreateExamService,
-    CreateExamResolver,
   ],
 })
 export class AppModule {}
