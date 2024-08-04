@@ -7,7 +7,24 @@ type Exam {
   tUserId: Int
   Question: [ExamQuestion]
 }
+type ExamQuestion {
+  id: Int
+  examId: Int
+  item: String #문제
+  indexNum: Int # 문제번호
+  answer: String #답
+  #제출한답
+  ExamAnswer: [ExamAnswer]
+}
 
+type ExamAnswer {
+  id: Int
+  stName: String
+  ExamQuestion: ExamQuestion
+  examQuestionId: Int
+  tUser: TUser
+  tUserId: Int
+}
 type Mutation {
   createExam(title: String!, tUserId: Int!): CommentResponse!
 }

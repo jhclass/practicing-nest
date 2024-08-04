@@ -11,12 +11,14 @@ datasource db {
 }
 
 model TUser {
-  id           Int            @id @default(autoincrement())
-  name         String
-  password     String
-  email        String         @unique
-  phoneNum     String         @unique
-  ExamQuestion ExamQuestion[]
+  id         Int          @id @default(autoincrement())
+  name       String
+  password   String
+  email      String       @unique
+  phoneNum   String       @unique
+  rating     String?
+  Exam       Exam[]
+  ExamAnswer ExamAnswer[]
 }
 
 model Comment {
@@ -30,6 +32,9 @@ model Comment {
 
 model Exam {
   id        Int            @id @default(autoincrement()) //id
+  title     String
+  tester    TUser          @relation(fields: [tUserId], references: [id], onDelete: Cascade)
+  tUserId   Int
   createdAt DateTime       @default(now())
   updatedAt DateTime       @updatedAt
   Question  ExamQuestion[]
@@ -44,8 +49,6 @@ model ExamQuestion {
   answer     String //답
   //제출한답
   ExamAnswer ExamAnswer[]
-  tUser      TUser        @relation(fields: [tUserId], references: [id], onDelete: Cascade)
-  tUserId    Int
 }
 
 model ExamAnswer {
@@ -53,6 +56,8 @@ model ExamAnswer {
   stName         String
   ExamQuestion   ExamQuestion @relation(fields: [examQuestionId], references: [id], onDelete: Cascade)
   examQuestionId Int
+  tUser          TUser        @relation(fields: [tUserId], references: [id], onDelete: Cascade)
+  tUserId        Int
 }
 
 model ReportCard {
