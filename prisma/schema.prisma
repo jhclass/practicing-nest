@@ -16,9 +16,7 @@ model TUser {
   password     String
   email        String         @unique
   phoneNum     String         @unique
-  rating       String
   ExamQuestion ExamQuestion[]
-  Exam         Exam[]
 }
 
 model Comment {
@@ -34,9 +32,6 @@ model Exam {
   id        Int            @id @default(autoincrement()) //id
   createdAt DateTime       @default(now())
   updatedAt DateTime       @updatedAt
-  title     String
-  tester    TUser          @relation(fields: [tUserId], references: [id])
-  tUserId   Int
   Question  ExamQuestion[]
 }
 

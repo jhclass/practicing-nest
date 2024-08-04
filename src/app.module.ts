@@ -21,9 +21,12 @@ import { ImageModule } from "@/report-card/image.module";
 import { join } from "path";
 import { ChatGateway } from "./chat/chat.gateway";
 import { JwtStrategy } from "@/jwt.strategy";
-import { CreateExamModule } from "./exam/create-exam/create-exam.module";
-import { SurveyModule } from "./survey/survey.module";
-
+import { CreateSurveyModule } from "@/survey/create-survey/create-survey.module";
+import { EditSurveyModule } from "@/survey/edit-survey/edit-survey.module";
+import { CreateAqModule } from "@/survey/create-aq/create-aq.module";
+import { EditAqModule } from "@/survey/edit-aq/edit-aq.module";
+import { CreateExamService } from "@/exam/create-exam/create-exam.service";
+import { CreateExamResolver } from "@/exam/create-exam/create-exam.resolver";
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -62,8 +65,10 @@ import { SurveyModule } from "./survey/survey.module";
       inject: [ConfigService],
     }),
     ImageModule,
-    SurveyModule,
-    CreateExamModule,
+    CreateSurveyModule,
+    EditSurveyModule,
+    CreateAqModule,
+    EditAqModule,
   ],
   controllers: [AppController, apiController],
   providers: [
@@ -78,6 +83,8 @@ import { SurveyModule } from "./survey/survey.module";
     ReportCardResolver,
     ReportCardService,
     ChatGateway,
+    CreateExamService,
+    CreateExamResolver,
   ],
 })
 export class AppModule {}
