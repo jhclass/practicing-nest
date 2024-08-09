@@ -23,6 +23,10 @@ import { ChatGateway } from "./chat/chat.gateway";
 import { JwtStrategy } from "@/jwt.strategy";
 import { SurveyModule } from "./survey/survey.module";
 import { CreateExamModule } from "@/exam/create-exam/create-exam.module";
+import { EditExamModule } from "./exam/edit-exam/edit-exam.module";
+
+import * as jwt from "jsonwebtoken";
+import { PrismaService } from "./prisma/prisma.service";
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -39,7 +43,28 @@ import { CreateExamModule } from "@/exam/create-exam/create-exam.module";
       driver: ApolloDriver,
       playground: true,
       //introspection: true,
-      context: ({ req }) => ({ headers: req.headers }),
+      context: async ({ req }) => {
+        const token = req.headers.token; // 'token' 헤더에서 JWT 토큰 추출
+        let loggedInManager = null; // 변수 초기화
+        if (token) {
+          try {
+            const decoded = jwt.verify(token, process.env.SECRET_KEY); // JWT 검증
+            req.user = decoded; // 검증된 사용자 정보를 req.user에 설정
+            console.log("User set in context:", req.user.email); // 로그로 확인
+            const client = new PrismaService();
+            loggedInManager = await client.tUser.findUnique({
+              where: { email: req.user.email },
+            });
+            //console.log("나왔나 계정정보!:", loggedInManager);
+          } catch (err) {
+            console.error("Token verification failed:", err);
+          }
+        }
+        return {
+          headers: req.headers,
+          loggedInManager, // 필요 시 다른 컨텍스트 정보와 함께 전달
+        };
+      },
       definitions: {
         //typecript class 자동생성
         path: join(process.cwd(), "src/schema/graphql.ts"),
@@ -63,6 +88,7 @@ import { CreateExamModule } from "@/exam/create-exam/create-exam.module";
     ImageModule,
     SurveyModule,
     CreateExamModule,
+    EditExamModule,
   ],
   controllers: [AppController, apiController],
   providers: [

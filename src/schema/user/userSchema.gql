@@ -1,8 +1,12 @@
 type TUser {
-  id: Int
-  tpassword: String
-  name: String
-  email: String
+  id: Int!
+  name: String!
+  password: String!
+  email: String!
+  phoneNum: String!
+  rating: String #등급
+  Exam: [Exam]
+  ExamAnswer: [ExamAnswer]
 }
 type FindAllResponse {
   ok: Boolean!
@@ -19,6 +23,14 @@ type Mutation {
     password: String!
     email: String!
     phoneNum: String!
+  ): CommentResponse
+  editUser(
+    id: Int!
+    name: String
+    password: String
+    email: String
+    phoneNum: String
+    rating: String
   ): CommentResponse
   login(name: String, password: String): LoginResult
 }

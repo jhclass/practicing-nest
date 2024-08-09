@@ -5,7 +5,7 @@ import { CommonResponse } from "@/schema/graphql";
 @Resolver()
 export class CreateAqResolver {
   constructor(private readonly createAqService: CreateAqService) {}
-  //@UseGuards(gqlAuthGuard)
+  //@UseGuards(GqlAuthGuard)
   @Mutation(() => CommonResponse)
   createAQ(
     @Args("surveyId") surveyId: number,

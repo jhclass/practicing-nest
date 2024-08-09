@@ -1,11 +1,11 @@
 import { Query, Resolver } from "@nestjs/graphql";
 import { UseGuards } from "@nestjs/common";
 import { TUserService } from "./t-user.service";
-import { gqlAuthGuard } from "@/auth/gql-auth.guard";
+import { GqlAuthGuard } from "@/auth/gql-auth.guard";
 @Resolver()
 export class TUserResolver {
   constructor(private userService: TUserService) {}
-  @UseGuards(gqlAuthGuard)
+  @UseGuards(GqlAuthGuard)
   @Query()
   async allUsers() {
     return this.userService.findAll();

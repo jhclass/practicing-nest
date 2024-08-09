@@ -1,18 +1,20 @@
 type Exam {
-  id: Int
-  createdAt: String
-  updatedAt: String
-  title: String
-  tester: TUser
-  tUserId: Int
+  id: Int!
+  title: String!
+  tester: TUser!
+  tUserId: Int!
+  subjectName: String
   Question: [ExamQuestion]
+  createdAt: String!
+  updatedAt: String!
 }
 type ExamQuestion {
-  id: Int
-  examId: Int
-  item: String #문제
-  indexNum: Int # 문제번호
-  answer: String #답
+  id: Int!
+  Exam: Exam
+  examId: Int!
+  item: String! #문제
+  indexNum: Int! # 문제번호
+  answer: String! #답
   #제출한답
   ExamAnswer: [ExamAnswer]
 }
@@ -26,5 +28,10 @@ type ExamAnswer {
   tUserId: Int
 }
 type Mutation {
-  createExam(title: String!, tUserId: Int!): CommentResponse!
+  createExam(
+    title: String!
+    tUserId: Int!
+    subjectName: String!
+  ): CommentResponse!
+  editExam(id: Int!, title: String, subjectName: String): CommentResponse!
 }

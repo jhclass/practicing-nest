@@ -16,7 +16,7 @@ model TUser {
   password   String
   email      String       @unique
   phoneNum   String       @unique
-  rating     String?
+  rating     String? //등급
   Exam       Exam[]
   ExamAnswer ExamAnswer[]
 }
@@ -31,13 +31,14 @@ model Comment {
 }
 
 model Exam {
-  id        Int            @id @default(autoincrement()) //id
-  title     String
-  tester    TUser          @relation(fields: [tUserId], references: [id], onDelete: Cascade)
-  tUserId   Int
-  createdAt DateTime       @default(now())
-  updatedAt DateTime       @updatedAt
-  Question  ExamQuestion[]
+  id          Int            @id @default(autoincrement()) //id
+  title       String
+  tester      TUser          @relation(fields: [tUserId], references: [id], onDelete: Cascade)
+  tUserId     Int
+  subjectName String? //과목
+  createdAt   DateTime       @default(now())
+  updatedAt   DateTime       @updatedAt
+  Question    ExamQuestion[]
 }
 
 model ExamQuestion {

@@ -2,12 +2,12 @@ import { Mutation, Resolver, Args } from "@nestjs/graphql";
 import { EditSurveyService } from "./edit-survey.service";
 import { CommonResponse } from "@/schema/graphql";
 import { UseGuards } from "@nestjs/common";
-import { gqlAuthGuard } from "@/auth/gql-auth.guard";
+import { GqlAuthGuard } from "@/auth/gql-auth.guard";
 
 @Resolver()
 export class EditSurveyResolver {
   constructor(private readonly editSurveyService: EditSurveyService) {}
-  @UseGuards(gqlAuthGuard)
+  @UseGuards(GqlAuthGuard)
   @Mutation(() => CommonResponse)
   editSurvey(
     @Args("id") id: number,

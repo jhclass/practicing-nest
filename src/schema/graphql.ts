@@ -23,6 +23,8 @@ export abstract class IMutation {
 
     abstract createExam(title: string, tUserId: number): CommentResponse | Promise<CommentResponse>;
 
+    abstract editExam(id: number, title: string, tUserId: number): CommentResponse | Promise<CommentResponse>;
+
     abstract getSignedUploadUrl(fileName: string): string | Promise<string>;
 
     abstract createReportCard(score: number, comment?: Nullable<string>, imageUrl?: Nullable<string>): Nullable<ReportCard> | Promise<Nullable<ReportCard>>;
@@ -36,6 +38,8 @@ export abstract class IMutation {
     abstract editAQ(id: number, question?: Nullable<string>, answer?: Nullable<string>): CommonResponse | Promise<CommonResponse>;
 
     abstract createUser(name: string, password: string, email: string, phoneNum: string): Nullable<CommentResponse> | Promise<Nullable<CommentResponse>>;
+
+    abstract editUser(id: number, name?: Nullable<string>, password?: Nullable<string>, email?: Nullable<string>, phoneNum?: Nullable<string>, rating?: Nullable<string>): Nullable<CommentResponse> | Promise<Nullable<CommentResponse>>;
 
     abstract login(name?: Nullable<string>, password?: Nullable<string>): Nullable<LoginResult> | Promise<Nullable<LoginResult>>;
 }
@@ -70,21 +74,23 @@ export class CommonResponse {
 }
 
 export class Exam {
-    id?: Nullable<number>;
-    createdAt?: Nullable<string>;
-    updatedAt?: Nullable<string>;
-    title?: Nullable<string>;
-    tester?: Nullable<TUser>;
-    tUserId?: Nullable<number>;
+    id: number;
+    title: string;
+    tester: TUser;
+    tUserId: number;
+    subjectName: string;
     Question?: Nullable<Nullable<ExamQuestion>[]>;
+    createdAt: string;
+    updatedAt: string;
 }
 
 export class ExamQuestion {
-    id?: Nullable<number>;
-    examId?: Nullable<number>;
-    item?: Nullable<string>;
-    indexNum?: Nullable<number>;
-    answer?: Nullable<string>;
+    id: number;
+    Exam?: Nullable<Exam>;
+    examId: number;
+    item: string;
+    indexNum: number;
+    answer: string;
     ExamAnswer?: Nullable<Nullable<ExamAnswer>[]>;
 }
 
@@ -126,10 +132,14 @@ export class AdmissionQuestion {
 }
 
 export class TUser {
-    id?: Nullable<number>;
-    tpassword?: Nullable<string>;
-    name?: Nullable<string>;
-    email?: Nullable<string>;
+    id: number;
+    name: string;
+    password: string;
+    email: string;
+    phoneNum: string;
+    rating?: Nullable<string>;
+    Exam?: Nullable<Nullable<Exam>[]>;
+    ExamAnswer?: Nullable<Nullable<ExamAnswer>[]>;
 }
 
 export class FindAllResponse {
