@@ -15,14 +15,13 @@ export class EditExamService {
   async editExamService(
     id: number,
     title: string,
-    tUserId: number,
     subjectName: string,
     loggedInManager: LoggedInManager,
   ) {
     try {
       //id
-      if (!id || !title || !tUserId) {
-        throw new Error("id, title, tUserId는 필수값 입니다.");
+      if (!id) {
+        throw new Error("id 는 필수값 입니다.");
       }
       const isMe = loggedInManager.id;
       const existingId = await this.client.exam.findUnique({

@@ -30,7 +30,7 @@ type ExamAnswer {
 type Mutation {
   createExam(
     title: String!
-    tUserId: Int!
+
     subjectName: String!
   ): CommentResponse!
   editExam(id: Int!, title: String, subjectName: String): CommentResponse!

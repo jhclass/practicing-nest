@@ -7,13 +7,12 @@ export class CreateExamService {
   constructor(private client: PrismaService) {}
   async createExamService(
     title: string,
-    tUserId: number,
     subjectName: string,
     loggedInManager: LoggedInManager,
   ) {
     try {
       //
-      if (!title || !tUserId) {
+      if (!title || !subjectName) {
         throw new Error("title 과 tUserId 는 필수값 입니다.");
       }
       if (loggedInManager.rating === "강사") {

@@ -11,13 +11,11 @@ export class CreateExamResolver {
   @Mutation(() => String)
   async createExam(
     @Args("title") title: string,
-    @Args("tUserId") tUserId: number,
     @Args("subjectName") subjectName: string,
     @Context("loggedInManager") loggedInManager: LoggedInManager,
   ) {
     return this.createExamService.createExamService(
       title,
-      tUserId,
       subjectName,
       loggedInManager,
     );

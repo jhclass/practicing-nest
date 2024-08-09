@@ -21,14 +21,12 @@ export class EditExamResolver {
   async editExam(
     @Args("id") id: number,
     @Args("title") title: string,
-    @Args("tUserId") tUserId: number,
     @Args("subjectName") subjectName: string,
     @Context("loggedInManager") loggedInManager: LoggedInManager,
   ) {
     return this.editExamService.editExamService(
       id,
       title,
-      tUserId,
       subjectName,
       loggedInManager,
     );

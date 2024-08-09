@@ -21,9 +21,9 @@ export abstract class IMutation {
 
     abstract updateComment(id: number, name?: Nullable<string>, password?: Nullable<string>, content?: Nullable<string>): Nullable<CommentResponse> | Promise<Nullable<CommentResponse>>;
 
-    abstract createExam(title: string, tUserId: number): CommentResponse | Promise<CommentResponse>;
+    abstract createExam(title: string, subjectName: string): CommentResponse | Promise<CommentResponse>;
 
-    abstract editExam(id: number, title: string, tUserId: number): CommentResponse | Promise<CommentResponse>;
+    abstract editExam(id: number, title?: Nullable<string>, subjectName?: Nullable<string>): CommentResponse | Promise<CommentResponse>;
 
     abstract getSignedUploadUrl(fileName: string): string | Promise<string>;
 
@@ -78,7 +78,7 @@ export class Exam {
     title: string;
     tester: TUser;
     tUserId: number;
-    subjectName: string;
+    subjectName?: Nullable<string>;
     Question?: Nullable<Nullable<ExamQuestion>[]>;
     createdAt: string;
     updatedAt: string;
