@@ -25,6 +25,8 @@ export abstract class IMutation {
 
     abstract editExam(id: number, title?: Nullable<string>, subjectName?: Nullable<string>): CommentResponse | Promise<CommentResponse>;
 
+    abstract deleteExam(id: number): CommentResponse | Promise<CommentResponse>;
+
     abstract getSignedUploadUrl(fileName: string): string | Promise<string>;
 
     abstract createReportCard(score: number, comment?: Nullable<string>, imageUrl?: Nullable<string>): Nullable<ReportCard> | Promise<Nullable<ReportCard>>;

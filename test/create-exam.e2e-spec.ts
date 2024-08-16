@@ -48,4 +48,22 @@ describe("CreateExam(e2e)", () => {
     console.log("여기말야", response.body);
     expect(response.body.data.createExam.ok).toBe(true);
   });
+  it("deleteExam(graphql)", async () => {
+    const response = await request(app.getHttpServer())
+      .post("/graphql")
+      .set("token", `${jwtToken}`)
+      .send({
+        query: `
+        mutation {
+            deleteExam(id:29) {
+                ok
+                error
+                message
+            }
+        }
+        `,
+      });
+
+    console.log("삭제 되었니?", response.body);
+  });
 });

@@ -24,9 +24,10 @@ import { JwtStrategy } from "@/jwt.strategy";
 import { SurveyModule } from "./survey/survey.module";
 import { CreateExamModule } from "@/exam/create-exam/create-exam.module";
 import { EditExamModule } from "./exam/edit-exam/edit-exam.module";
-
+import { DeleteExamModule } from "./exam/delete-exam/delete-exam.module";
 import * as jwt from "jsonwebtoken";
 import { PrismaService } from "./prisma/prisma.service";
+
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -89,6 +90,7 @@ import { PrismaService } from "./prisma/prisma.service";
     SurveyModule,
     CreateExamModule,
     EditExamModule,
+    DeleteExamModule,
   ],
   controllers: [AppController, apiController],
   providers: [

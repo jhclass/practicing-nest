@@ -28,10 +28,7 @@ type ExamAnswer {
   tUserId: Int
 }
 type Mutation {
-  createExam(
-    title: String!
-
-    subjectName: String!
-  ): CommentResponse!
+  createExam(title: String!, subjectName: String!): CommentResponse!
   editExam(id: Int!, title: String, subjectName: String): CommentResponse!
+  deleteExam(id: Int!): CommentResponse!
 }
