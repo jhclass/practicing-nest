@@ -1,6 +1,5 @@
 import { PrismaService } from "@/prisma/prisma.service";
 import { Injectable } from "@nestjs/common";
-import { LoggedInManager } from "@/types";
 
 @Injectable()
 export class CreateExamService {
@@ -8,20 +7,21 @@ export class CreateExamService {
   async createExamService(
     title: string,
     subjectName: string,
-    loggedInManager: LoggedInManager,
+    id: number,
+    rating: string,
   ) {
     try {
       //
       if (!title || !subjectName) {
         throw new Error("title 과 tUserId 는 필수값 입니다.");
       }
-      if (loggedInManager.rating === "강사") {
+      if (rating === "강사") {
         throw new Error("출제자는 강사만 가능합니다. rating 을 확인하세요.");
       }
       await this.client.exam.create({
         data: {
           title,
-          tUserId: loggedInManager.id,
+          tUserId: id,
           subjectName,
         },
       });

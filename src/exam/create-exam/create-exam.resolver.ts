@@ -2,7 +2,6 @@ import { Args, Mutation, Resolver, Context } from "@nestjs/graphql";
 import { CreateExamService } from "./create-exam.service";
 import { GqlAuthGuard } from "@/auth/gql-auth.guard";
 import { UseGuards } from "@nestjs/common";
-import { LoggedInManager } from "@/types";
 
 @Resolver()
 export class CreateExamResolver {
@@ -12,12 +11,14 @@ export class CreateExamResolver {
   async createExam(
     @Args("title") title: string,
     @Args("subjectName") subjectName: string,
-    @Context("loggedInManager") loggedInManager: LoggedInManager,
+    @Context("id") id: number,
+    @Context("rating") rating: string,
   ) {
     return this.createExamService.createExamService(
       title,
       subjectName,
-      loggedInManager,
+      id,
+      rating,
     );
   }
 }
