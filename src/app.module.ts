@@ -23,8 +23,8 @@ import { ChatGateway } from "./chat/chat.gateway";
 import { JwtStrategy } from "@/jwt.strategy";
 import { SurveyModule } from "./survey/survey.module";
 import { CreateExamModule } from "@/exam/create-exam/create-exam.module";
-import { EditExamModule } from "./exam/edit-exam/edit-exam.module";
-import { DeleteExamModule } from "./exam/delete-exam/delete-exam.module";
+import { EditExamModule } from "@/exam/edit-exam/edit-exam.module";
+import { DeleteExamModule } from "@/exam/delete-exam/delete-exam.module";
 import * as jwt from "jsonwebtoken";
 import { PrismaService } from "./prisma/prisma.service";
 
