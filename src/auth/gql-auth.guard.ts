@@ -7,7 +7,7 @@ export class GqlAuthGuard extends AuthGuard("jwt") {
   getRequest(context: ExecutionContext) {
     const ctx = GqlExecutionContext.create(context);
     const request = ctx.getContext().req;
-    console.log("Request Headers:", request.headers); // 헤더를 출력하여 토큰 확인
+    console.log("Request Headers!!:", request.headers); // 헤더를 출력하여 토큰 확인
     return request;
   }
 }

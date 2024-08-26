@@ -11,14 +11,15 @@ export class CreateExamResolver {
   async createExam(
     @Args("title") title: string,
     @Args("subjectName") subjectName: string,
-    @Context("id") id: number,
-    @Context("rating") rating: string,
+    @Context() context,
   ) {
+    const user = context.req.user;
+    console.log("유저???:", user);
     return this.createExamService.createExamService(
       title,
       subjectName,
-      id,
-      rating,
+      user.id,
+      user.rating,
     );
   }
 }
