@@ -45,9 +45,10 @@ describe("CreateExam(e2e)", () => {
         }
         `,
       });
-    console.log("여기말야", response.body);
+    //console.log("여기말야", response.body);
     expect(response.body.data.createExam.ok).toBe(true);
   });
+<<<<<<< HEAD
   it("deleteExam(graphql)", async () => {
     const response = await request(app.getHttpServer())
       .post("/graphql")
@@ -65,5 +66,24 @@ describe("CreateExam(e2e)", () => {
       });
 
     console.log("삭제 되었니?", response.body);
+=======
+  it("/graphql(post)", async () => {
+    const res = await request(app.getHttpServer())
+      .post("/graphql")
+      .set("token", jwtToken)
+      .send({
+        query: `
+      mutation {
+        editExam(id:1,title:"장기시험"){
+          ok
+          error
+          message
+        }
+      }
+      `,
+      });
+    console.log("바디를 보자:", res.body);
+    expect(res.body.data.editExam.ok).toBe(true);
+>>>>>>> f3a43f98f65a1c0e7470d06a22c8eeb96f9cd967
   });
 });
