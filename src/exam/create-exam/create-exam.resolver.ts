@@ -14,7 +14,7 @@ export class CreateExamResolver {
     @Context() context,
   ) {
     const user = context.req.user;
-    console.log("유저???:", user);
+    //console.log("유저???:", user);
     return this.createExamService.createExamService(
       title,
       subjectName,
