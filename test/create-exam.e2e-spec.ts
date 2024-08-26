@@ -45,7 +45,25 @@ describe("CreateExam(e2e)", () => {
         }
         `,
       });
-    console.log("여기말야", response.body);
+    //console.log("여기말야", response.body);
     expect(response.body.data.createExam.ok).toBe(true);
+  });
+  it("/graphql(post)", async () => {
+    const res = await request(app.getHttpServer())
+      .post("/graphql")
+      .set("token", jwtToken)
+      .send({
+        query: `
+      mutation {
+        editExam(id:1,title:"장기시험"){
+          ok
+          error
+          message
+        }
+      }
+      `,
+      });
+    console.log("바디를 보자:", res.body);
+    expect(res.body.data.editExam.ok).toBe(true);
   });
 });
