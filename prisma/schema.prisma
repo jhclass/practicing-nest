@@ -42,14 +42,18 @@ model Exam {
 }
 
 model ExamQuestion {
-  id         Int          @id @default(autoincrement())
-  Exam       Exam         @relation(fields: [examId], references: [id], onDelete: Cascade) //문제 (이건 이미지)
-  examId     Int
-  item       String //문제
-  indexNum   Int // 문제번호
-  answer     String //답
+  id                 Int          @id @default(autoincrement())
+  Exam               Exam         @relation(fields: [examId], references: [id], onDelete: Cascade) //문제 (이건 이미지)
+  examId             Int
+  item               String //문제
+  indexNum           Int // 문제번호
+  answer             String //답
   //제출한답
-  ExamAnswer ExamAnswer[]
+  ExamAnswer         ExamAnswer[]
+  createdAt          DateTime     @default(now())
+  updatedAt          DateTime     @updatedAt
+  lastModifiedTime   DateTime?
+  lastModifiedByName String?
 }
 
 model ExamAnswer {

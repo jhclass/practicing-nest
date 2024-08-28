@@ -27,6 +27,7 @@ import { EditExamModule } from "@/exam/edit-exam/edit-exam.module";
 import { DeleteExamModule } from "@/exam/delete-exam/delete-exam.module";
 // import * as jwt from "jsonwebtoken";
 // import { PrismaService } from "./prisma/prisma.service";
+import { CreateExamQuestionModule } from "@/exam-question/create-exam-question/create-exam-question.module";
 
 @Module({
   imports: [
@@ -91,6 +92,7 @@ import { DeleteExamModule } from "@/exam/delete-exam/delete-exam.module";
     CreateExamModule,
     EditExamModule,
     DeleteExamModule,
+    CreateExamQuestionModule,
   ],
   controllers: [AppController, apiController],
   providers: [

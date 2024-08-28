@@ -1,0 +1,23 @@
+type ExamQuestion {
+  id: Int
+  Exam: Exam
+  examId: Int
+  item: String #문제
+  indexNum: Int #문제번호
+  answer: String #답
+  #제출한답
+  ExamAnswer: [ExamAnswer]
+  createdAt: String
+  updatedAt: String
+  lastModifiedTime: String
+  lastModifiedByName: String
+}
+
+type Mutation {
+  createExamQuestion(
+    examId: Int!
+    item: String!
+    indexNum: Int!
+    answer: String!
+  ): CommonResponse!
+}
