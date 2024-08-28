@@ -2,6 +2,9 @@ import { Injectable } from "@nestjs/common";
 import { S3Client, PutObjectCommand } from "@aws-sdk/client-s3";
 import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
 import { Express } from "express";
+import { v4 as uuidv4 } from "uuid";
+//import path from "path"; <-error!
+import * as path from "path";
 @Injectable()
 export class ImageService {
   private readonly s3Client: S3Client;
@@ -29,9 +32,16 @@ export class ImageService {
   // 서명된 url 을 가지고
   // s3 에 업로드 합니다.
   // 그런데 fileBuffer 를 받아야 하는데
-  async uploadFileToS3(file: Express.Multer.File): Promise<string> {
+  async uploadFileToS3(
+    file: Express.Multer.File,
+    folderName: string,
+  ): Promise<string> {
+    if (!file) {
+      throw new Error("파일은 필수 입니다.");
+    }
     const bucketName = "instaclone-uploadsss";
-    const key = `report_images/${file.originalname}`;
+    const ext = path.extname(file.originalname); //파일확장자 획득
+    const key = `${folderName}/${uuidv4()}${ext}`;
     const command = new PutObjectCommand({
       Bucket: bucketName,
       Key: key,

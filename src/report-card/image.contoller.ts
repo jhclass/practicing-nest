@@ -1,4 +1,5 @@
 import {
+  Body,
   Controller,
   Post,
   UploadedFile,
@@ -17,7 +18,13 @@ export class ImageController {
   //알아서 이미지 이름을 변경해서 보내던지 해야합니다 :)
   @Post("upload")
   @UseInterceptors(FileInterceptor("file"))
-  async uploadFile(@UploadedFile() file: Express.Multer.File) {
-    return await this.imageService.uploadFileToS3(file);
+  async uploadFile(
+    @UploadedFile() file: Express.Multer.File,
+    @Body("folderName") folderName: string = "defaultFolder", //body보낼래 param 으로 보낼지는 당신의 판단.
+  ) {
+    if (!folderName) {
+      throw new Error("folderName 은 필수값입니다.");
+    }
+    return await this.imageService.uploadFileToS3(file, folderName);
   }
 }
