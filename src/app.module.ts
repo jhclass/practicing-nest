@@ -28,6 +28,7 @@ import { DeleteExamModule } from "@/exam/delete-exam/delete-exam.module";
 // import * as jwt from "jsonwebtoken";
 // import { PrismaService } from "./prisma/prisma.service";
 import { CreateExamQuestionModule } from "@/exam-question/create-exam-question/create-exam-question.module";
+import { Cafe24Controller } from "./cafe24/cafe24.controller";
 
 @Module({
   imports: [
@@ -94,7 +95,7 @@ import { CreateExamQuestionModule } from "@/exam-question/create-exam-question/c
     DeleteExamModule,
     CreateExamQuestionModule,
   ],
-  controllers: [AppController, apiController],
+  controllers: [AppController, apiController, Cafe24Controller],
   providers: [
     JwtStrategy,
     TUserResolver,
