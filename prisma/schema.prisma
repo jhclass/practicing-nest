@@ -48,6 +48,7 @@ model ExamQuestion {
   item               String //문제
   indexNum           Int // 문제번호
   answer             String //답
+  fileUrl            String[]
   //제출한답
   ExamAnswer         ExamAnswer[]
   createdAt          DateTime     @default(now())
@@ -57,12 +58,16 @@ model ExamQuestion {
 }
 
 model ExamAnswer {
-  id             Int          @id @default(autoincrement())
-  stName         String
-  ExamQuestion   ExamQuestion @relation(fields: [examQuestionId], references: [id], onDelete: Cascade)
-  examQuestionId Int
-  tUser          TUser        @relation(fields: [tUserId], references: [id], onDelete: Cascade)
-  tUserId        Int
+  id                 Int          @id @default(autoincrement())
+  stName             String
+  ExamQuestion       ExamQuestion @relation(fields: [examQuestionId], references: [id], onDelete: Cascade)
+  examQuestionId     Int
+  tUser              TUser        @relation(fields: [tUserId], references: [id], onDelete: Cascade)
+  tUserId            Int
+  createdAt          DateTime     @default(now())
+  updatedAt          DateTime     @updatedAt
+  lastModifiedTime   DateTime?
+  lastModifiedByName String?
 }
 
 model ReportCard {
