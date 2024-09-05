@@ -5,6 +5,7 @@ type ExamQuestion {
   item: String #문제
   indexNum: Int #문제번호
   answer: String #답
+  filePath: [String] # 파일을 올리고 (controller 를 이용하여) url을 저장하면 됩니다
   #제출한답
   ExamAnswer: [ExamAnswer]
   createdAt: String
@@ -18,6 +19,7 @@ type Mutation {
     examId: Int!
     item: String!
     indexNum: Int!
-    answer: String!
+    answer: String! #답
+    fileUrl: [String]!
   ): CommonResponse!
 }

@@ -13,7 +13,7 @@ export class CreateExamQuestionResolver {
     @Args("item") item: string,
     @Args("indexNum") indexNum: number,
     @Args("answer") answer: string,
-    @Args("lastModifiedTime") lastModifiedTime: string,
+    @Args("filePath") filePath: string[],
     @Context()
     context: any,
   ) {
@@ -23,7 +23,7 @@ export class CreateExamQuestionResolver {
       item,
       indexNum,
       answer,
-      lastModifiedTime,
+      filePath,
       user.name,
     );
   }

@@ -10,7 +10,7 @@ export class CreateExamQuestionService {
     item: string,
     indexNum: number,
     answer: string,
-    lastModifiedTime: string,
+    fileUrl: string[],
     userName: string,
   ): Promise<CommonResponse> {
     try {
@@ -23,7 +23,7 @@ export class CreateExamQuestionService {
           item,
           indexNum,
           answer,
-          lastModifiedTime,
+          fileUrl,
           lastModifiedByName: userName,
         },
       });
