@@ -27,7 +27,7 @@ export abstract class IMutation {
 
     abstract deleteExam(id: number): CommentResponse | Promise<CommentResponse>;
 
-    abstract createExamQuestion(examId: number, item: string, indexNum: number, answer: string): CommonResponse | Promise<CommonResponse>;
+    abstract createExamQuestion(examId: number, item: string, indexNum: number, answer: string, fileUrl: Nullable<string>[]): CommonResponse | Promise<CommonResponse>;
 
     abstract getSignedUploadUrl(fileName: string): string | Promise<string>;
 
@@ -96,6 +96,7 @@ export class ExamQuestion {
     indexNum: number;
     answer: string;
     ExamAnswer?: Nullable<Nullable<ExamAnswer>[]>;
+    filePath?: Nullable<Nullable<string>[]>;
     createdAt?: Nullable<string>;
     updatedAt?: Nullable<string>;
     lastModifiedTime?: Nullable<string>;

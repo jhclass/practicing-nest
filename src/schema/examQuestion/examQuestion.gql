@@ -22,4 +22,15 @@ type Mutation {
     answer: String! #답
     fileUrl: [String]!
   ): CommonResponse!
+  editExamQuestion(
+    id:Int!
+    examId: Int
+    item: String
+    indexNum: Int
+    answer: String #답
+    fileUrl: [String]
+  ): CommonResponse!
+
 }
+
+
