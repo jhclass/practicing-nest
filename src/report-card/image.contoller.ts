@@ -7,13 +7,17 @@ import {
 } from "@nestjs/common";
 import { FileInterceptor } from "@nestjs/platform-express";
 import { ImageService } from "@/report-card/image.service";
-
+interface DeleteFileResponse {
+  ok: boolean;
+  message: string;
+  error?: string; // 에러는 선택적 필드
+}
 @Controller("images") // 엔드포인트
 export class ImageController {
   constructor(private readonly imageService: ImageService) {}
   //upload 가 엔드포인트 프론트 상황에 따라 변화해야함
   //insomnia 로 테스트 완료
-  //s3 에 정상적으로 폴더 생성 및 파일업로드 확인.r
+  //s3 에 정상적으로 폴더 생성 및 파일업로드 확인.
   //이미지 이름이 중복될 경우엔 덮어쓰기가 되는듯?
   //알아서 이미지 이름을 변경해서 보내던지 해야합니다 :)
   @Post("upload")
@@ -26,5 +30,11 @@ export class ImageController {
       throw new Error("folderName 은 필수값입니다.");
     }
     return await this.imageService.uploadFileToS3(file, folderName);
+  }
+  @Post("deletefile") async deleteFile(
+    @Body("fileUrl") fileUrl: string,
+    @Body("folderName") folderName: string,
+  ): Promise<DeleteFileResponse> {
+    return await this.imageService.deleteFileFromS3(fileUrl, folderName);
   }
 }
