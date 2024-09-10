@@ -13,7 +13,13 @@ type ExamQuestion {
   lastModifiedTime: String
   lastModifiedByName: String
 }
-
+type ResultSearchExamQuestion {
+  ok: Boolean!
+  message: String
+  error: String
+  result: [ExamQuestion]
+  totalCount: Int
+}
 type Mutation {
   createExamQuestion(
     examId: Int!
@@ -23,14 +29,14 @@ type Mutation {
     fileUrl: [String]!
   ): CommonResponse!
   editExamQuestion(
-    id:Int!
+    id: Int!
     examId: Int
     item: String
     indexNum: Int
     answer: String #답
     fileUrl: [String]
   ): CommonResponse!
-
 }
-
-
+type Query {
+  searchExamQuestion(id: Int, examId: Int): ResultSearchExamQuestion!
+}
