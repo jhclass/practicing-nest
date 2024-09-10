@@ -29,6 +29,7 @@ import { DeleteExamModule } from "@/exam/delete-exam/delete-exam.module";
 // import { PrismaService } from "./prisma/prisma.service";
 import { CreateExamQuestionModule } from "@/exam-question/create-exam-question/create-exam-question.module";
 import { Cafe24Controller } from "./cafe24/cafe24.controller";
+import { EditExamQuestionModule } from "./exam-question/edit-exam-question/edit-exam-question.module";
 
 @Module({
   imports: [
@@ -94,6 +95,7 @@ import { Cafe24Controller } from "./cafe24/cafe24.controller";
     EditExamModule,
     DeleteExamModule,
     CreateExamQuestionModule,
+    EditExamQuestionModule,
   ],
   controllers: [AppController, apiController, Cafe24Controller],
   providers: [
