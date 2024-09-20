@@ -36,6 +36,7 @@ type Mutation {
     answer: String #답
     fileUrl: [String]
   ): CommonResponse!
+  deleteExamQuestion(id: Int!): CommentResponse!
 }
 type Query {
   searchExamQuestion(id: Int, examId: Int): ResultSearchExamQuestion!

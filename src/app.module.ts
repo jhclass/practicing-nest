@@ -27,10 +27,8 @@ import { EditExamModule } from "@/exam/edit-exam/edit-exam.module";
 import { DeleteExamModule } from "@/exam/delete-exam/delete-exam.module";
 // import * as jwt from "jsonwebtoken";
 // import { PrismaService } from "./prisma/prisma.service";
-import { CreateExamQuestionModule } from "@/exam-question/create-exam-question/create-exam-question.module";
 import { Cafe24Controller } from "./cafe24/cafe24.controller";
-import { EditExamQuestionModule } from "@/exam-question/edit-exam-question/edit-exam-question.module";
-import { SearchExamQuestionModule } from "@/exam-question/search-exam-question/search-exam-question.module";
+import { ExamQuestionModule } from "@/exam-question/exam-question.module";
 
 @Module({
   imports: [
@@ -95,9 +93,7 @@ import { SearchExamQuestionModule } from "@/exam-question/search-exam-question/s
     CreateExamModule,
     EditExamModule,
     DeleteExamModule,
-    CreateExamQuestionModule,
-    EditExamQuestionModule,
-    SearchExamQuestionModule,
+    ExamQuestionModule,
   ],
   controllers: [AppController, apiController, Cafe24Controller],
   providers: [
